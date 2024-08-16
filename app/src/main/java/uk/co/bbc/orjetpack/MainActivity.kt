@@ -1,6 +1,7 @@
 package uk.co.bbc.orjetpack
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
@@ -75,14 +77,28 @@ fun CreateBizCard() {
             ) {
                 CreateImageProfile(modifier = Modifier.padding(40.dp))
                 Divider(
-                    modifier = Modifier.padding(20.dp, top = 0.dp, bottom = 20.dp), color = Color.Red,
+                    modifier = Modifier.padding(20.dp, top = 0.dp, bottom = 20.dp),
+                    color = Color.Red,
                     thickness = 1.dp
                 )
-                Greeting(
+                CreateInfo(
                     name = "Gregorio",
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                 )
+                Button(modifier = Modifier.padding(1.dp),
+                    onClick = {
+                        Log.d("DEBUG", "Button Clicked!")
+
+                    }
+                ) {
+                    Text(
+                        text = "Portfolio",
+                        modifier = Modifier.padding(2.dp),
+                        style = MaterialTheme.typography.titleLarge
+                    )
+
+                }
             }
         }
     }
@@ -109,12 +125,30 @@ private fun CreateImageProfile(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier,
-        color = Color.Black
-    )
+private fun CreateInfo(name: String, modifier: Modifier = Modifier) {
+    Column(
+        modifier = Modifier.padding(5.dp, bottom = 20.dp),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        Text(
+            text = "Hello $name!",
+            modifier,
+            color = MaterialTheme.colorScheme.primary,
+            style = MaterialTheme.typography.headlineMedium,
+        )
+        Text(
+            text = "Android Composer",
+            modifier = Modifier.padding(5.dp)
+        )
+        Text(
+            text = "@gmassara",
+            modifier = Modifier.padding(2.dp),
+            style = MaterialTheme.typography.titleMedium,
+        )
+    }
+
 }
 
 @Preview(showBackground = true)
